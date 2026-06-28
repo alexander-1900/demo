@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>لوحة التحكم الإدارية – ولاية الأفلو</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    /* ===== Strict white / green palette ===== */
+    --green-900:#0B4D2C;   /* letterhead / deepest accent */
+    --green-800:#0D5C35;
+    --green-700:#127C45;   /* primary actions */
+    --green-600:#1B8E52;
+    --green-500:#3FA873;   /* mid accent */
+    --green-200:#BFE6CF;   /* pale accent bg */
+    --green-100:#E6F4EC;   /* very pale bg */
+    --green-50:#F4FAF6;    /* near-white tint */
+    --white:#FFFFFF;
+
+    --ink:#142A1E;
+    --text-primary:#142A1E;
+    --text-secondary:#54675C;
+    --text-muted:#8CA095;
+
+    --border:#DCEAE1;
+    --gray-50:#F6F8F7;     /* neutral, used only for the "rejected" state */
+    --gray-200:#E3E8E5;
+    --gray-text:#76837C;
+
+    --shadow:0 4px 18px rgba(11,77,44,.08);
+    --shadow-lg:0 14px 40px rgba(11,77,44,.16);
+    --radius:10px;
+    --radius-lg:18px;
+    --transition:all .18s ease;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Cairo',sans-serif;
+    background:var(--white);
+    color:var(--text-primary);
+  }
+  .container{max-width:1180px;margin:0 auto;padding:0 22px;}
+  button{font-family:inherit;}
+  a{color:inherit;text-decoration:none;}
+
+  /* ===== Geometric divider (signature motif, green only) ===== */
+  .geo-divider{
+    height:8px;
+    background-image:
+      linear-gradient(45deg, var(--green-500) 25%, transparent 25%, transparent 75%, var(--green-500) 75%),
+      linear-gradient(45deg, var(--green-500) 25%, transparent 25%, transparent 75%, var(--green-500) 75%);
+    background-size:16px 16px;
+    background-position:0 0, 8px 8px;
+    opacity:.9;
+  }
+  .geo-divider.thin{height:4px;opacity:.55;}
+
+  /* ===== Official letterhead ===== */
+  .letterhead{background:var(--green-900);color:#fff;padding:16px 0 0;}
+  .letterhead-inner{display:flex;align-items:center;justify-content:center;gap:20px;text-align:center;padding-bottom:16px;}
+  .letterhead-text p{margin:0;line-height:1.5;}
+  .letterhead-text .republic{font-size:.92rem;font-weight:700;letter-spacing:.3px;color:rgba(255,255,255,.92);font-family:'Amiri',serif;}
+  .letterhead-text .ministry{font-size:.78rem;font-weight:500;opacity:.78;margin-top:2px;}
+  .letterhead-text .wilaya{font-size:1.08rem;font-weight:800;margin-top:6px;font-family:'Amiri',serif;}
+  .letterhead-text .diwan{font-size:.78rem;font-weight:600;opacity:.82;}
+
+  /* ----- Logo slot: replace LOGO_URL in the script, or drop an <img> straight in here ----- */
+  .logo-slot{
+    width:64px;height:64px;border-radius:14px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+  }
+  .logo-slot img{width:100%;height:100%;object-fit:contain;}
+  .logo-placeholder{
+    width:100%;height:100%;border:1.5px dashed rgba(255,255,255,.45);border-radius:14px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+    color:rgba(255,255,255,.7);
+  }
+  .logo-placeholder svg{width:20px;height:20px;}
+  .logo-placeholder span{font-size:.58rem;font-weight:700;line-height:1.3;}
+
+  /* ===== Sub-header / app bar ===== */
+  .main-header{background:var(--white);border-bottom:1px solid var(--border);}
+  .header-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;flex-wrap:wrap;gap:12px;}
+  .header-left{display:flex;align-items:center;gap:14px;}
+  .header-badge{
+    width:46px;height:46px;border-radius:12px;background:var(--green-50);border:1px solid var(--green-100);
+    display:flex;align-items:center;justify-content:center;color:var(--green-900);
+  }
+  .header-left h1{font-size:1.12rem;font-weight:800;margin:0;color:var(--green-900);}
+  .header-left p{font-size:.78rem;color:var(--text-secondary);margin:2px 0 0;}
+
+  .role-switch{display:flex;background:var(--green-50);border-radius:50px;padding:3px;gap:2px;border:1px solid var(--border);}
+  .role-switch button{border:none;background:transparent;padding:6px 14px;border-radius:50px;font-size:.78rem;font-weight:700;color:var(--text-secondary);cursor:pointer;transition:var(--transition);}
+  .role-switch button.active{background:var(--green-900);color:#fff;box-shadow:var(--shadow);}
+
+  .btn-logout{
+    background:var(--white);color:var(--text-secondary);border:1.5px solid var(--border);
+    padding:8px 18px;font-size:.82rem;font-weight:800;border-radius:50px;cursor:pointer;transition:var(--transition);
+    display:flex;align-items:center;gap:6px;
+  }
+  .btn-logout:hover{background:var(--green-50);color:var(--green-900);border-color:var(--green-200);}
+
+  /* ===== Main ===== */
+  .admin-main{padding:30px 0 60px;}
+
+  .stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:26px;}
+  .stat-card{
+    background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);
+    padding:18px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow);
+    border-top:3px solid var(--accent, var(--green-700));
+  }
+  .stat-card .stat-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:var(--accent-bg, var(--green-100));color:var(--accent, var(--green-700));}
+  .stat-card .stat-num{font-size:1.6rem;font-weight:900;color:var(--text-primary);}
+  .stat-card .stat-label{font-size:.78rem;font-weight:700;color:var(--text-secondary);}
+
+  .stat-card.c-total{--accent:var(--green-900);--accent-bg:var(--green-100);}
+  .stat-card.c-sec{--accent:var(--green-500);--accent-bg:var(--green-50);}
+  .stat-card.c-gov{--accent:var(--green-700);--accent-bg:var(--green-100);}
+  .stat-card.c-res{--accent:var(--green-800);--accent-bg:var(--green-200);}
+  .stat-card.c-spam{--accent:var(--gray-text);--accent-bg:var(--gray-50);}
+
+  .dashboard-card{background:var(--white);border-radius:var(--radius-lg);padding:26px;box-shadow:var(--shadow);border:1px solid var(--border);}
+  .dashboard-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--green-100);flex-wrap:wrap;gap:14px;}
+  .dashboard-header h3{font-size:1.15rem;font-weight:900;color:var(--green-900);margin:0;font-family:'Amiri',serif;}
+  .dashboard-header p{font-size:.82rem;color:var(--text-secondary);margin:4px 0 0;}
+
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;}
+  .toolbar input, .toolbar select{
+    border:1.5px solid var(--border);border-radius:50px;padding:9px 16px;font-size:.85rem;
+    background:var(--green-50);color:var(--text-primary);font-family:inherit;transition:var(--transition);
+  }
+  .toolbar input:focus, .toolbar select:focus{outline:2px solid var(--green-700);outline-offset:1px;background:var(--white);}
+  .toolbar input{flex:1;min-width:180px;}
+
+  .table-responsive{overflow-x:auto;border-radius:var(--radius);}
+  .admin-table{width:100%;border-collapse:collapse;text-align:right;font-size:.88rem;}
+  .admin-table th{background:var(--green-100);padding:13px 14px;font-size:.78rem;font-weight:800;color:var(--green-900);border-bottom:2px solid var(--green-200);white-space:nowrap;}
+  .admin-table td{padding:14px;border-bottom:1px solid var(--green-50);vertical-align:middle;}
+  .admin-table tr:hover td{background:var(--green-50);}
+
+  .track-code{
+    display:inline-flex;align-items:center;gap:6px;font-weight:800;font-size:.8rem;letter-spacing:.5px;
+    padding:5px 10px;border:1.5px dashed var(--green-500);border-radius:7px;background:var(--green-50);color:var(--green-800);direction:ltr;
+  }
+
+  .status-badge{display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:50px;font-size:.75rem;font-weight:800;white-space:nowrap;}
+  .status-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;}
+  .status-pending_secretary{background:var(--green-50);color:var(--green-600);}
+  .status-pending_governor{background:var(--green-100);color:var(--green-800);}
+  .status-resolved{background:var(--green-900);color:#fff;}
+  .status-spam{background:var(--gray-50);color:var(--gray-text);}
+
+  .row-actions{display:flex;gap:6px;flex-wrap:wrap;}
+  .btn-action-sm{padding:6px 13px;border-radius:7px;font-size:.78rem;font-weight:700;border:1px solid var(--border);background:var(--white);transition:var(--transition);cursor:pointer;}
+  .btn-action-sm:hover{background:var(--green-50);transform:translateY(-1px);}
+  .btn-details{color:var(--green-800);border-color:var(--green-200);}
+  .btn-resolve{background:var(--green-800);color:#fff;border:none;}
+  .btn-resolve:hover{background:var(--green-900);}
+
+  .empty-state{padding:50px 0;text-align:center;color:var(--text-muted);}
+  .empty-state svg{width:46px;height:46px;color:var(--gray-200);margin-bottom:10px;}
+
+  /* ===== Modal / dossier ===== */
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(11,77,44,.45);align-items:flex-start;justify-content:center;z-index:100;padding:30px 14px;overflow-y:auto;}
+  .modal-overlay.open{display:flex;}
+  .modal-content{background:var(--white);max-width:820px;width:100%;border-radius:var(--radius-lg);overflow:hidden;margin:20px auto;box-shadow:var(--shadow-lg);position:relative;animation:slideUp .2s ease;}
+  @keyframes slideUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+
+  .dossier-stamp{
+    position:absolute;left:26px;top:26px;width:72px;height:72px;border-radius:50%;
+    border:2.5px solid var(--green-700);opacity:.92;display:flex;align-items:center;justify-content:center;
+    transform:rotate(-12deg);background:var(--green-50);z-index:2;
+  }
+  .dossier-stamp svg{width:36px;height:36px;color:var(--green-800);}
+  .dossier-stamp.hidden{display:none;}
+
+  .modal-header{padding:18px 26px;background:var(--green-100);border-bottom:1px solid var(--green-200);display:flex;justify-content:space-between;align-items:center;}
+  .modal-header h3{font-size:1.1rem;font-weight:900;color:var(--green-900);margin:0;font-family:'Amiri',serif;}
+  .close-modal{font-size:1.6rem;cursor:pointer;color:var(--text-muted);line-height:1;background:none;border:none;}
+  .close-modal:hover{color:var(--green-900);}
+
+  .modal-body{padding:28px;}
+  .details-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .detail-full-width{grid-column:span 2;}
+  .detail-item{display:flex;flex-direction:column;gap:6px;}
+  .detail-label{font-size:.74rem;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:.4px;}
+  .detail-value{font-size:.96rem;font-weight:700;color:var(--text-primary);}
+  .detail-box{background:var(--green-50);border:1.5px solid var(--border);border-radius:var(--radius);padding:15px;font-size:.92rem;line-height:1.85;color:var(--text-primary);}
+  .download-anchor{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;background:var(--green-100);color:var(--green-900);border-radius:8px;font-weight:700;font-size:.84rem;transition:var(--transition);}
+  .download-anchor:hover{background:var(--green-900);color:#fff;}
+
+  .timeline{display:flex;align-items:center;justify-content:space-between;margin:6px 0 4px;}
+  .timeline-step{display:flex;flex-direction:column;align-items:center;gap:7px;flex:1;position:relative;}
+  .timeline-step .dot{width:16px;height:16px;border-radius:50%;background:var(--green-50);border:2px solid var(--border);z-index:1;}
+  .timeline-step.done .dot{background:var(--green-800);border-color:var(--green-800);}
+  .timeline-step.current .dot{background:var(--green-500);border-color:var(--green-600);box-shadow:0 0 0 4px var(--green-100);}
+  .timeline-step span{font-size:.72rem;font-weight:700;color:var(--text-secondary);text-align:center;}
+  .timeline-step.done span{color:var(--green-800);}
+  .timeline-line{position:absolute;top:7px;right:50%;width:100%;height:2px;background:var(--border);z-index:0;}
+  .timeline-step:first-child .timeline-line{display:none;}
+  .timeline-step.done .timeline-line{background:var(--green-800);}
+
+  .modal-actions{display:flex;gap:10px;justify-content:flex-end;padding:18px 26px;border-top:1px solid var(--green-100);background:var(--green-50);flex-wrap:wrap;}
+  .btn-modal{padding:10px 20px;border-radius:8px;font-size:.85rem;font-weight:800;cursor:pointer;border:none;transition:var(--transition);}
+  .btn-modal.primary{background:var(--green-800);color:#fff;}
+  .btn-modal.primary:hover{background:var(--green-900);}
+  .btn-modal.ghost{background:var(--white);color:var(--text-secondary);border:1.5px solid var(--border);}
+  .btn-modal.danger{background:var(--gray-50);color:var(--gray-text);border:1.5px solid var(--gray-200);}
+  .btn-modal.danger:hover{background:var(--gray-200);}
+
+  .site-footer{padding:22px 0;background-color: #0B4D2C;text-align:center;color:var(--text-muted);font-size:.78rem;}
+  .site-footer p{margin:4px 0;}
+
+  @media (max-width:980px){ .stats-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:768px){
+    .details-grid{grid-template-columns:1fr;}
+    .detail-full-width{grid-column:span 1;}
+    .dashboard-header{flex-direction:column;align-items:flex-start;}
+    .stats-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (prefers-reduced-motion:reduce){ *{animation:none !important;transition:none !important;} }
+  :focus-visible{outline:2.5px solid var(--green-700);outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<div class="letterhead">
+  <div class="container letterhead-inner">
+    <div class="logo-slot" id="logo-slot">
+      <div class="logo-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 16V4m0 0L7 9m5-5l5 5M5 20h14" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>شعار<br>الولاية</span>
+      </div>
+    </div>
+    <div class="letterhead-text">
+      <p class="republic">الجمهورية الجزائرية الديمقراطية الشعبية</p>
+      <p class="ministry">وزارة الداخلية والجماعات المحلية وتهيئة الإقليم</p>
+      <p class="wilaya">ولاية الأفلو</p>
+      <p class="diwan">ديوان الوالي — مكتب استقبال المواطنين</p>
+    </div>
+    <div class="logo-slot" aria-hidden="true" style="visibility:hidden;"></div>
+  </div>
+</div>
+
+<header class="main-header">
+  <div class="container header-row">
+    <div class="header-left">
+      <div class="header-badge" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <h1>لوحة تسيير الشكاوى</h1>
+        <p id="display-profile">مرحباً سيادة الوالي — مكتب ديوان الوالي</p>
+      </div>
+    </div>
+
+    <div class="header-left">
+      <div class="role-switch" role="group" aria-label="تبديل الصلاحية">
+        <button type="button" class="role-btn" data-role="secretary">الكاتب العام</button>
+        <button type="button" class="role-btn active" data-role="wali">سيادة الوالي</button>
+      </div>
+      <button class="btn-logout" id="logout-btn" type="button">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        تسجيل الخروج
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="admin-main">
+  <div class="container">
+
+    <div class="stats-grid" id="stats-grid"></div>
+
+    <div class="dashboard-card">
+      <div class="dashboard-header">
+        <div>
+          <h3>سجل الشكاوى الواردة</h3>
+          <p>إدارة ومعالجة الشكاوى الموجهة لمكتب الوالي حسب البلدية والحالة</p>
+        </div>
+        <div style="background:var(--green-100);padding:10px 20px;border-radius:50px;font-weight:800;color:var(--green-900);font-size:.85rem;">
+          إجمالي الحالات: <span id="total-count">0</span>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <input type="text" id="search-input" placeholder="البحث بكود التتبع أو الموضوع…" />
+        <select id="filter-status">
+          <option value="">كل الحالات</option>
+          <option value="pending_secretary">قيد دراسة الكتابة</option>
+          <option value="pending_governor">قيد مصادقة الوالي</option>
+          <option value="resolved">منتهية</option>
+          <option value="spam">مرفوضة</option>
+        </select>
+        <select id="filter-commune">
+          <option value="">كل البلديات</option>
+        </select>
+      </div>
+
+      <div class="table-responsive">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>كود التتبع</th>
+              <th>الموضوع</th>
+              <th>البلدية</th>
+              <th>التاريخ</th>
+              <th>النوع</th>
+              <th>الحالة</th>
+              <th>الإجراءات</th>
+            </tr>
+          </thead>
+          <tbody id="complaints-tbody"></tbody>
+        </table>
+      </div>
+      <div id="empty-state" class="empty-state" style="display:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7" stroke-width="1.6"/><path d="M21 21l-3.5-3.5" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <p>لا توجد شكاوى مطابقة لمعايير البحث</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  
+  <p>الجمهورية الجزائرية الديمقراطية الشعبية — ولاية الأفلو — ديوان الوالي</p>
+  <p>للاستفسار يرجى التوجه إلى مكتب استقبال المواطنين أو الاتصال بالرقم الأخضر</p>
+</footer>
+
+<div class="modal-overlay" id="details-modal">
+  <div class="modal-content">
+    <div class="dossier-stamp" id="dossier-stamp">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 12l2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke-width="1.4"/></svg>
+    </div>
+    <div class="modal-header">
+      <h3>ملف الشكوى الكامل</h3>
+      <button class="close-modal" id="close-modal-btn" aria-label="إغلاق">&times;</button>
+    </div>
+    <div class="modal-body" id="details-body"></div>
+    <div class="modal-actions" id="modal-actions"></div>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   LOGO — put your wilaya logo's URL or path here.
+   Leave empty to keep showing the dashed placeholder.
+   ========================================================= */
+const LOGO_URL = "logo.png"; // e.g. "images/logo.png"
+
+/* ===== Sample register (mock data — wire up to your API) ===== */
+const COMMUNES = ["الأفلو","عين الإبل","سيدي بوزيد","الكور","تاوينزا"];
+const TYPES = ["انقطاع مياه الشرب","أضرار طرقات","نقص في الإنارة العمومية","شكوى ضد موظف عمومي","طلب سكن اجتماعي","تراكم النفايات"];
+const STATUS_LABEL = {pending_secretary:"قيد دراسة الكتابة", pending_governor:"قيد مصادقة الوالي", resolved:"منتهية", spam:"مرفوضة"};
+
+let complaints = [
+  {id:"AFL-2026-0142", subject:"انقطاع متكرر لمياه الشرب بالحي الشعبي", commune:"الأفلو", date:"2026-06-21", type:TYPES[0], status:"pending_governor",
+   citizen:"بن يوسف عبد القادر", phone:"0556 12 34 56", nin:"1198XXXXXXXXX12", address:"حي 1 نوفمبر، الأفلو",
+   desc:"تشهد منطقتنا انقطاعاً متكرراً لمياه الشرب منذ أكثر من ثلاثة أسابيع دون أي إعلام مسبق من الجهات المعنية، الأمر الذي أثر بشكل مباشر على الحياة اليومية للسكان.", attachment:true},
+  {id:"AFL-2026-0143", subject:"تدهور حالة الطريق الرئيسي المؤدي للمدرسة", commune:"عين الإبل", date:"2026-06-22", type:TYPES[1], status:"pending_secretary",
+   citizen:"خديجة مرابط", phone:"0661 22 33 44", nin:"1196XXXXXXXXX08", address:"المركز، عين الإبل",
+   desc:"الطريق المؤدي إلى المدرسة الابتدائية أصبح في حالة متدهورة جداً ويشكل خطراً على سلامة الأطفال أثناء التوجه إلى المدرسة.", attachment:false},
+  {id:"AFL-2026-0144", subject:"غياب الإنارة العمومية بالشارع الفرعي", commune:"الكور", date:"2026-06-18", type:TYPES[2], status:"resolved",
+   citizen:"محمد الطاهر زروق", phone:"0770 44 55 66", nin:"1190XXXXXXXXX21", address:"حي السلام، الكور",
+   desc:"انعدام الإنارة العمومية بالشارع الفرعي منذ مدة طويلة، مما يصعب التنقل ليلاً ويزيد من المخاوف الأمنية لسكان الحي.", attachment:true},
+  {id:"AFL-2026-0145", subject:"سلوك غير لائق من موظف بمكتب البلدية", commune:"سيدي بوزيد", date:"2026-06-15", type:TYPES[3], status:"spam",
+   citizen:"غير محدد", phone:"—", nin:"—", address:"بلدية سيدي بوزيد",
+   desc:"الشكوى لا تتضمن معلومات كافية للتحقق ولم يتم إثبات الواقعة بمستندات داعمة.", attachment:false},
+  {id:"AFL-2026-0146", subject:"طلب الاستفادة من سكن اجتماعي", commune:"تاوينزا", date:"2026-06-24", type:TYPES[4], status:"pending_secretary",
+   citizen:"فاطمة الزهراء بلحاج", phone:"0556 77 88 99", nin:"1202XXXXXXXXX44", address:"دوار العمارنة، تاوينزا",
+   desc:"أتوجه إلى مصالحكم الموقرة بطلب الاستفادة من سكن اجتماعي نظراً لظروفي المعيشية الصعبة وعدم امتلاكي لأي سكن.", attachment:true},
+  {id:"AFL-2026-0147", subject:"تراكم النفايات قرب السوق الأسبوعي", commune:"الأفلو", date:"2026-06-25", type:TYPES[5], status:"pending_governor",
+   citizen:"عمر شريط", phone:"0661 11 22 33", nin:"1185XXXXXXXXX09", address:"محاذي السوق الأسبوعي، الأفلو",
+   desc:"تراكم كميات كبيرة من النفايات قرب السوق الأسبوعي منذ أسبوعين دون رفعها، مما تسبب في انبعاث روائح كريهة وانتشار للحشرات.", attachment:false}
+];
+
+let currentRole = "wali";
+
+const sealIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="12" height="12"><circle cx="12" cy="12" r="3.2" stroke-width="1.6"/></svg>`;
+
+/* ---- tiny debounce helper (avoids a full re-render on every keystroke) ---- */
+function debounce(fn, wait){
+  let t;
+  return (...args)=>{ clearTimeout(t); t=setTimeout(()=>fn(...args), wait); };
+}
+
+function setLogo(){
+  if(!LOGO_URL) return;
+  document.getElementById("logo-slot").innerHTML = `<img src="${LOGO_URL}" alt="شعار ولاية الأفلو">`;
+}
+
+function fillCommuneFilter(){
+  const sel = document.getElementById("filter-commune");
+  const frag = document.createDocumentFragment();
+  COMMUNES.forEach(c=>{
+    const o = document.createElement("option"); o.value=c; o.textContent=c; frag.appendChild(o);
+  });
+  sel.appendChild(frag);
+}
+
+function renderStats(){
+  const counts = {total:complaints.length, pending_secretary:0, pending_governor:0, resolved:0, spam:0};
+  complaints.forEach(c=>counts[c.status]++);
+  const cards = [
+    {cls:"c-total", num:counts.total, label:"إجمالي الشكاوى", icon:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 6h16M4 12h16M4 18h10" stroke-width="2" stroke-linecap="round"/></svg>`},
+    {cls:"c-sec", num:counts.pending_secretary, label:"قيد دراسة الكتابة", icon:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 8v4l3 2" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke-width="1.6"/></svg>`},
+    {cls:"c-gov", num:counts.pending_governor, label:"قيد مصادقة الوالي", icon:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2l2.4 4.86 5.36.78-3.88 3.78.92 5.34L12 14.27l-4.8 2.49.92-5.34L4.24 7.64l5.36-.78z" stroke-width="1.4" stroke-linejoin="round"/></svg>`},
+    {cls:"c-res", num:counts.resolved, label:"شكاوى منتهية", icon:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 13l4 4L19 7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`},
+    {cls:"c-spam", num:counts.spam, label:"شكاوى مرفوضة", icon:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6L6 18M6 6l12 12" stroke-width="2.2" stroke-linecap="round"/></svg>`}
+  ];
+  document.getElementById("stats-grid").innerHTML = cards.map(c=>`
+    <div class="stat-card ${c.cls}">
+      <div class="stat-icon">${c.icon}</div>
+      <div class="stat-num">${c.num}</div>
+      <div class="stat-label">${c.label}</div>
+    </div>`).join("");
+  document.getElementById("total-count").textContent = counts.total;
+}
+
+function getFilteredComplaints(){
+  const search = document.getElementById("search-input").value.trim().toLowerCase();
+  const statusF = document.getElementById("filter-status").value;
+  const communeF = document.getElementById("filter-commune").value;
+  return complaints.filter(c=>{
+    if(statusF && c.status!==statusF) return false;
+    if(communeF && c.commune!==communeF) return false;
+    if(search && !(c.id.toLowerCase().includes(search) || c.subject.toLowerCase().includes(search))) return false;
+    return true;
+  });
+}
+
+function renderTable(){
+  const filtered = getFilteredComplaints();
+  const tbody = document.getElementById("complaints-tbody");
+  const empty = document.getElementById("empty-state");
+
+  if(filtered.length===0){ tbody.innerHTML=""; empty.style.display="block"; return; }
+  empty.style.display="none";
+
+  /* build with an array + join instead of repeated string concatenation */
+  const rows = new Array(filtered.length);
+  for(let i=0;i<filtered.length;i++){
+    const c = filtered[i];
+    const canResolve = c.status!=="resolved" && c.status!=="spam";
+    rows[i] = `
+    <tr data-row="${c.id}">
+      <td><span class="track-code">${sealIcon}${c.id}</span></td>
+      <td>${c.subject}</td>
+      <td>${c.commune}</td>
+      <td>${c.date}</td>
+      <td>${c.type}</td>
+      <td><span class="status-badge status-${c.status}">${STATUS_LABEL[c.status]}</span></td>
+      <td>
+        <div class="row-actions">
+          <button class="btn-action-sm btn-details" data-open="${c.id}">تفاصيل</button>
+          ${canResolve ? `<button class="btn-action-sm btn-resolve" data-resolve="${c.id}">حل</button>` : ""}
+        </div>
+      </td>
+    </tr>`;
+  }
+  tbody.innerHTML = rows.join("");
+}
+
+/* ---- single delegated listener instead of binding handlers per row on every render ---- */
+document.getElementById("complaints-tbody").addEventListener("click", (e)=>{
+  const openBtn = e.target.closest("[data-open]");
+  const resolveBtn = e.target.closest("[data-resolve]");
+  if(openBtn){ openModal(openBtn.dataset.open); return; }
+  if(resolveBtn){
+    const item = complaints.find(c=>c.id===resolveBtn.dataset.resolve);
+    if(item){ item.status="resolved"; renderAll(); }
+  }
+});
+
+function timelineHTML(status){
+  const steps = [
+    {label:"تقديم الشكوى"},
+    {label:"دراسة الكتابة العامة"},
+    {label:"مصادقة الوالي"},
+    {label:"المعالجة النهائية"}
+  ];
+  const order = ["submitted","pending_secretary","pending_governor","resolved"];
+  let currentIdx = order.indexOf(status==="spam" ? "pending_secretary" : status);
+  if(status==="resolved") currentIdx = 3;
+  return `<div class="timeline">${steps.map((s,i)=>{
+    let cls = i < currentIdx ? "done" : (i===currentIdx ? "current done" : "");
+    if(status==="spam" && i>1) cls="";
+    return `<div class="timeline-step ${cls}"><div class="timeline-line"></div><div class="dot"></div><span>${s.label}</span></div>`;
+  }).join("")}</div>`;
+}
+
+function openModal(id){
+  const c = complaints.find(x=>x.id===id);
+  if(!c) return;
+  document.getElementById("dossier-stamp").classList.toggle("hidden", c.status!=="resolved");
+
+  document.getElementById("details-body").innerHTML = `
+    <div class="detail-full-width" style="margin-bottom:22px;">${timelineHTML(c.status)}</div>
+    <div class="details-grid">
+      <div class="detail-item"><span class="detail-label">كود التتبع</span><span class="detail-value"><span class="track-code">${sealIcon}${c.id}</span></span></div>
+      <div class="detail-item"><span class="detail-label">الحالة الحالية</span><span class="detail-value"><span class="status-badge status-${c.status}">${STATUS_LABEL[c.status]}</span></span></div>
+      <div class="detail-item"><span class="detail-label">المواطن (صاحب الشكوى)</span><span class="detail-value">${c.citizen}</span></div>
+      <div class="detail-item"><span class="detail-label">رقم التعريف الوطني</span><span class="detail-value">${c.nin}</span></div>
+      <div class="detail-item"><span class="detail-label">رقم الهاتف</span><span class="detail-value">${c.phone}</span></div>
+      <div class="detail-item"><span class="detail-label">البلدية / العنوان</span><span class="detail-value">${c.commune} — ${c.address}</span></div>
+      <div class="detail-item"><span class="detail-label">نوع الشكوى</span><span class="detail-value">${c.type}</span></div>
+      <div class="detail-item"><span class="detail-label">تاريخ الإيداع</span><span class="detail-value">${c.date}</span></div>
+      <div class="detail-item detail-full-width"><span class="detail-label">نص الشكوى</span><div class="detail-box">${c.desc}</div></div>
+      ${c.attachment ? `<div class="detail-item detail-full-width">
+        <span class="detail-label">المرفقات</span>
+        <a href="#" class="download-anchor" onclick="event.preventDefault()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          تحميل الوثيقة المرفقة
+        </a>
+      </div>` : ""}
+    </div>`;
+
+  let actions = `<button class="btn-modal ghost" data-act="close">إغلاق</button>`;
+  if(currentRole==="secretary" && c.status==="pending_secretary"){
+    actions += `<button class="btn-modal danger" data-act="spam">رفض الشكوى</button>
+                <button class="btn-modal primary" data-act="forward">تحويل لمكتب الوالي</button>`;
+  } else if(currentRole==="wali" && c.status==="pending_governor"){
+    actions += `<button class="btn-modal danger" data-act="spam">رفض</button>
+                <button class="btn-modal primary" data-act="resolve">المصادقة وإغلاق الملف</button>`;
+  }
+  const actionsEl = document.getElementById("modal-actions");
+  actionsEl.innerHTML = actions;
+  actionsEl.onclick = (e)=>{
+    const btn = e.target.closest("[data-act]");
+    if(!btn) return;
+    if(btn.dataset.act==="close"){ closeModal(); return; }
+    if(btn.dataset.act==="forward") c.status="pending_governor";
+    if(btn.dataset.act==="resolve") c.status="resolved";
+    if(btn.dataset.act==="spam") c.status="spam";
+    closeModal(); renderAll();
+  };
+
+  document.getElementById("details-modal").classList.add("open");
+}
+function closeModal(){ document.getElementById("details-modal").classList.remove("open"); }
+
+function renderAll(){ renderStats(); renderTable(); }
+
+document.getElementById("close-modal-btn").addEventListener("click", closeModal);
+document.getElementById("details-modal").addEventListener("click", (e)=>{ if(e.target.id==="details-modal") closeModal(); });
+document.getElementById("search-input").addEventListener("input", debounce(renderTable, 180));
+document.getElementById("filter-status").addEventListener("change", renderTable);
+document.getElementById("filter-commune").addEventListener("change", renderTable);
+
+document.querySelector(".role-switch").addEventListener("click", (e)=>{
+  const btn = e.target.closest(".role-btn");
+  if(!btn) return;
+  document.querySelectorAll(".role-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  currentRole = btn.dataset.role;
+  document.getElementById("display-profile").textContent =
+    currentRole==="wali" ? "مرحباً سيادة الوالي — مكتب ديوان الوالي" : "مرحباً بالكاتب العام — مكتب استقبال الشكاوى";
+});
+
+document.getElementById("logout-btn").addEventListener("click", ()=>{
+  if(confirm("هل تريد تسجيل الخروج من لوحة التحكم؟")) alert("تم تسجيل الخروج (اربط هذا الزر بمنطق تسجيل الخروج الفعلي).");
+});
+
+setLogo();
+fillCommuneFilter();
+renderAll();
+</script>
+</body>
+</html>

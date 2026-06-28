@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>منصة الشكاوى والمقترحات – ولاية الأفلو</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       TOP OFFICIAL BAR
+  ══════════════════════════════════════════ -->
+  <div class="official-bar">
+    <div class="container">
+      <span class="republic-full-name">الجمهورية الجزائرية الديمقراطية الشعبية</span>
+      <span class="ministry-name">وزارة الداخلية والجماعات المحلية والتهيئة العمرانية</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       MAIN HEADER
+  ══════════════════════════════════════════ -->
+  <header class="main-header">
+    <div class="container">
+      <div class="header-inner">
+
+        <!-- Portal Title (center) -->
+        <div class="header-title-block">
+          <img src="logo.png" alt="الجمهورية الجزائرية" class="center-logo" style="width: 120px; height: auto; margin-bottom: 20px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));">
+          <div class="header-top-text">بوابة الوالي الإلكترونية</div>
+          <h1 class="portal-main-title">منصة الشكاوى والمقترحات</h1>
+          <div class="portal-wilaya-name">ولاية الأفلو – ولاية الأغواط</div>
+          <div class="portal-slogan">صوتك يُسمع • مشكلتك تُحَل</div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════════
+       NAVIGATION BAR
+  ══════════════════════════════════════════ -->
+  <nav class="main-nav" id="main-nav">
+    <div class="container">
+      <ul class="nav-list" id="nav-list">
+        <li><a href="#" class="nav-link active" data-section="home">الرئيسية</a></li>
+        <li><a href="#complaint-section" class="nav-link" data-section="complaint">تقديم شكوى</a></li>
+        <li><a href="#track-section" class="nav-link" data-section="track">تتبع شكوى</a></li>
+        <li><a href="#how-it-works" class="nav-link" data-section="how">كيفية الاستخدام</a></li>
+        <li><a href="#faq" class="nav-link" data-section="faq">الأسئلة الشائعة</a></li>
+        <li><a href="#contact" class="nav-link" data-section="contact">اتصل بنا</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="فتح القائمة">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════
+       HERO SECTION
+  ══════════════════════════════════════════ -->
+  <section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          خدمة رسمية معتمدة من ولاية الأفلو
+        </div>
+        <h2 class="hero-title">
+          صوتك يُسمع<br/>مشكلتك تُحَل
+        </h2>
+        <p class="hero-desc">
+          منصة رقمية رسمية مخصصة لتلقي شكاوى ومقترحات مواطني ولاية الأفلو،
+          وإيصالها مباشرة إلى مكتب السيد والي الولاية.
+        </p>
+        <div class="hero-actions">
+          <a href="#complaint-section" class="btn-primary-hero">
+            تقديم شكوى الآن
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+            </svg>
+          </a>
+          <a href="#how-it-works" class="btn-outline-hero">كيف يعمل؟</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-wave">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="white"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       STATS BAR
+  ══════════════════════════════════════════ -->
+  <section class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon-wrap green">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <span class="stat-number">72</span>
+            <span class="stat-unit">ساعة</span>
+            <span class="stat-label">مدة الاستجابة</span>
+          </div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-card">
+          <div class="stat-icon-wrap red">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <span class="stat-number">100</span>
+            <span class="stat-unit">٪</span>
+            <span class="stat-label">سرية تامة</span>
+          </div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-card">
+          <div class="stat-icon-wrap green">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <span class="stat-number">متاح</span>
+            <span class="stat-unit">24/7</span>
+            <span class="stat-label">على مدار الساعة</span>
+          </div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-card">
+          <div class="stat-icon-wrap red">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <span class="stat-number">رسمي</span>
+            <span class="stat-unit"></span>
+            <span class="stat-label">معتمد من الولاية</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       COMPLAINT FORM SECTION
+  ══════════════════════════════════════════ -->
+  <section class="complaint-section" id="complaint-section">
+    <div class="container">
+
+      <div class="section-header">
+        <div class="section-badge">نموذج الشكوى</div>
+        <h2 class="section-title">تقديم شكوى أو مقترح</h2>
+        <p class="section-desc">اختر طريقة التقديم المناسبة لك — بهويتك أو مجهول الهوية</p>
+      </div>
+
+      <!-- Mode Selector -->
+      <div class="mode-selector">
+        <button class="mode-btn active" id="btn-normal" data-mode="normal">
+          <div class="mode-btn-top">
+            <div class="mode-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+            <div class="mode-text">
+              <strong>شكوى عادية</strong>
+              <span>بمعلوماتك الشخصية الكاملة</span>
+            </div>
+          </div>
+          <ul class="mode-features">
+            <li>✓ متابعة حالة الشكوى</li>
+            <li>✓ إشعار بالرد عبر الهاتف</li>
+            <li>✓ معالجة أسرع</li>
+          </ul>
+          <div class="mode-check-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+        </button>
+
+        <button class="mode-btn" id="btn-anonymous" data-mode="anonymous">
+          <div class="mode-btn-top">
+            <div class="mode-icon anon-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <div class="mode-text">
+              <strong>شكوى مجهولة الهوية</strong>
+              <span>دون الكشف عن هويتك</span>
+            </div>
+          </div>
+          <ul class="mode-features">
+            <li>✓ لا تسجيل لأي بيانات شخصية</li>
+            <li>✓ حماية كاملة للهوية</li>
+            <li>✓ سرية مضمونة قانونياً</li>
+          </ul>
+          <div class="mode-check-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+        </button>
+      </div>
+
+      <!-- Form Card -->
+      <div class="form-card" id="form-card">
+
+        <!-- ─── NORMAL FORM ─────────────────────── -->
+        <form id="form-normal" class="complaint-form active" novalidate>
+
+          <!-- Personal Info Block -->
+          <div class="form-block">
+            <div class="form-block-header">
+              <div class="block-icon green-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="block-title">المعلومات الشخصية</h3>
+                <p class="block-desc">بيانات هويتك الكاملة (مطلوبة)</p>
+              </div>
+            </div>
+
+            <div class="fields-grid">
+              <div class="field-group">
+                <label class="field-label" for="fn-fullname">
+                  الاسم واللقب الكامل <span class="req-star">*</span>
+                </label>
+                <input class="field-input" type="text" id="fn-fullname" name="fullname"
+                       placeholder="مثال: محمد بن أحمد" autocomplete="name" required />
+                <span class="field-error" id="err-fullname"></span>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="fn-nin">
+                  رقم بطاقة الهوية الوطنية <span class="req-star">*</span>
+                </label>
+                <input class="field-input" type="text" id="fn-nin" name="nin"
+                       placeholder="123456789012345678" maxlength="18" required />
+                <span class="field-hint">رقم مكون من 18 خانة</span>
+                <span class="field-error" id="err-nin"></span>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="fn-phone">
+                  رقم الهاتف <span class="req-star">*</span>
+                </label>
+                <input class="field-input" type="tel" id="fn-phone" name="phone"
+                       placeholder="0X XX XX XX XX" maxlength="14" required />
+                <span class="field-error" id="err-phone"></span>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="fn-email">
+                  البريد الإلكتروني
+                  <span class="optional-tag">اختياري</span>
+                </label>
+                <input class="field-input" type="email" id="fn-email" name="email"
+                       placeholder="example@gmail.com" autocomplete="email" />
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="fn-commune">
+                  البلدية <span class="req-star">*</span>
+                </label>
+                <div class="select-wrap">
+                  <select class="field-select" id="fn-commune" name="commune" required>
+                    <option value="">-- اختر البلدية --</option>
+                    <option value="aflou">أفلو</option>
+                    <option value="sebgag">سبقاق</option>
+                    <option value="sidi-bouzid"> سيدي بوزيد</option>
+                    <option value="brida">بريدة </option>
+                    <option value="gueltet">قلتة سيدي سعد</option>
+                    <option value="taouiala"> تاويالة</option>
+                    <option value="oued-morra">وادي مرة</option>
+                    <option value="elhadj-elmechri">الحاج المشري</option>
+                    <option value="el-ghaicha">الغيشة</option>
+                    <option value="ain-sidi ali"> عين سيدي علي</option>
+                    <option value="albaida"> البيضاء</option>
+                    <option value="oued-mzi">وادي مزي</option>
+                  </select>
+                  <svg class="select-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                       viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </div>
+                <span class="field-error" id="err-commune"></span>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="fn-address">
+                  العنوان التفصيلي
+                  <span class="optional-tag">اختياري</span>
+                </label>
+                <input class="field-input" type="text" id="fn-address" name="address"
+                       placeholder="حي / شارع / رقم السكن" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Complaint Details Block -->
+          <div class="form-block">
+            <div class="form-block-header">
+              <div class="block-icon red-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="block-title">تفاصيل الشكوى</h3>
+                <p class="block-desc">اشرح مشكلتك أو مقترحك بوضوح</p>
+              </div>
+            </div>
+
+            <div class="fields-grid">
+              <div class="field-group">
+                <label class="field-label" for="fn-category">
+                  نوع الشكوى / القطاع <span class="req-star">*</span>
+                </label>
+                <div class="select-wrap">
+                  <select class="field-select" id="fn-category" name="category" required>
+                    <option value="">-- اختر النوع --</option>
+                    <optgroup label="قطاعات الخدمة">
+                      <option value="infrastructure">البنية التحتية والطرق</option>
+                      <option value="water">الماء والصرف الصحي</option>
+                      <option value="electricity">الكهرباء والغاز</option>
+                      <option value="education">التعليم والمدارس</option>
+                      <option value="health">الصحة والمستشفيات</option>
+                      <option value="housing">السكن والتعمير</option>
+                      <option value="social">الشؤون الاجتماعية</option>
+                      <option value="environment">البيئة والنظافة</option>
+                      <option value="agriculture">الفلاحة والري</option>
+                      <option value="security">الأمن والنظام العام</option>
+                      <option value="admin">الخدمات الإدارية</option>
+                      <option value="transport">النقل والمواصلات</option>
+                    </optgroup>
+                    <optgroup label="أخرى">
+                      <option value="suggestion">مقترح وتحسين</option>
+                      <option value="other">أخرى</option>
+                    </optgroup>
+                  </select>
+                  <svg class="select-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                       viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </div>
+                <span class="field-error" id="err-fn-category"></span>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="fn-priority">
+                  مستوى الأولوية <span class="req-star">*</span>
+                </label>
+                <div class="priority-selector">
+                  <label class="priority-opt normal-opt">
+                    <input type="radio" name="fn_priority" value="normal" checked />
+                    <span class="priority-pill">عادي</span>
+                  </label>
+                  <label class="priority-opt urgent-opt">
+                    <input type="radio" name="fn_priority" value="urgent" />
+                    <span class="priority-pill">مستعجل</span>
+                  </label>
+                  <label class="priority-opt very-urgent-opt">
+                    <input type="radio" name="fn_priority" value="very_urgent" />
+                    <span class="priority-pill">جد مستعجل</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="field-group full-width">
+              <label class="field-label" for="fn-subject">
+                عنوان الشكوى <span class="req-star">*</span>
+              </label>
+              <input class="field-input" type="text" id="fn-subject" name="subject"
+                     placeholder="ملخص مختصر للمشكلة أو المقترح" required />
+              <span class="field-error" id="err-fn-subject"></span>
+            </div>
+
+            <div class="field-group full-width">
+              <label class="field-label" for="fn-description">
+                تفاصيل الشكوى <span class="req-star">*</span>
+              </label>
+              <textarea class="field-textarea" id="fn-description" name="description"
+                        placeholder="اشرح المشكلة بالتفصيل: المكان، التاريخ، الجهة المعنية، والتأثير على المواطنين..."
+                        rows="6" required></textarea>
+              <div class="textarea-footer">
+                <span class="field-error" id="err-fn-description"></span>
+                <span class="char-counter" id="counter-fn-description">0 / 1000</span>
+              </div>
+            </div>
+
+            <!-- File Upload -->
+            <div class="field-group full-width">
+              <label class="field-label">
+                المرفقات والوثائق
+                <span class="optional-tag">اختياري</span>
+              </label>
+              <div class="upload-zone" id="upload-zone-normal"
+                   ondragover="handleDragOver(event)" ondrop="handleDrop(event,'normal')"
+                   ondragleave="handleDragLeave(event)">
+                <div class="upload-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
+                       fill="none" stroke="currentColor" stroke-width="1.5">
+                    <polyline points="16 16 12 12 8 16"/>
+                    <line x1="12" y1="12" x2="12" y2="21"/>
+                    <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
+                  </svg>
+                </div>
+                <div class="upload-text">
+                  <strong>اسحب وأفلت الملفات هنا</strong>
+                  <span>أو انقر للاختيار</span>
+                </div>
+                <div class="upload-hints">
+                  <span>PDF، صور (JPG, PNG)، Word، Excel</span>
+                  <span>•</span>
+                  <span>الحجم الأقصى: 5MB لكل ملف</span>
+                  <span>•</span>
+                  <span>حتى 5 ملفات</span>
+                </div>
+              </div>
+              <input type="file" id="fn-files" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx" class="hidden-input" onchange="handleFileSelect(event,'normal')" />
+              <div class="file-list" id="file-list-normal"></div>
+            </div>
+
+          </div><!-- end complaint block -->
+
+          <!-- Declaration -->
+          <div class="declaration-block">
+            <label class="checkbox-label">
+              <input type="checkbox" id="fn-declare" name="declare" required />
+              <span class="checkbox-custom"></span>
+              <span class="checkbox-text">
+                أُقرّ بأن المعلومات المقدمة صحيحة وكاملة، وأنني مسؤول قانونياً عن مضمون هذه الشكوى.
+              </span>
+            </label>
+            <span class="field-error" id="err-fn-declare"></span>
+          </div>
+
+          <div class="form-actions">
+            <button type="reset" class="btn-reset" onclick="resetForm('normal')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/>
+              </svg>
+              إعادة تعيين
+            </button>
+            <button type="submit" class="btn-submit" id="submit-normal">
+              <span class="btn-label">إرسال الشكوى</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"/>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+              <span class="btn-loader" id="loader-normal"></span>
+            </button>
+          </div>
+        </form>
+
+        <!-- ─── ANONYMOUS FORM ──────────────────── -->
+        <form id="form-anonymous" class="complaint-form" novalidate style="display:none">
+
+          <!-- Anonymous notice -->
+          <div class="anon-notice">
+            <div class="anon-notice-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <div class="anon-notice-body">
+              <strong>وضع الحماية الكاملة للهوية</strong>
+              <p>
+                لن يتم تسجيل أي بيانات تعريفية. شكواك ستُعالج بسرية تامة ومضمونة وفق القانون الجزائري.
+                لا يمكن تتبع هويتك أو التعرف عليك بأي وسيلة.
+              </p>
+            </div>
+          </div>
+
+          <div class="form-block">
+            <div class="form-block-header">
+              <div class="block-icon red-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="block-title">تفاصيل الشكوى</h3>
+                <p class="block-desc">اشرح مشكلتك أو مقترحك بوضوح (دون أي بيانات شخصية)</p>
+              </div>
+            </div>
+
+            <div class="fields-grid">
+              <div class="field-group">
+                <label class="field-label" for="an-category">
+                  نوع الشكوى / القطاع <span class="req-star">*</span>
+                </label>
+                <div class="select-wrap">
+                  <select class="field-select" id="an-category" name="category" required>
+                    <option value="">-- اختر النوع --</option>
+                    <optgroup label="قطاعات الخدمة">
+                      <option value="infrastructure">البنية التحتية والطرق</option>
+                      <option value="water">الماء والصرف الصحي</option>
+                      <option value="electricity">الكهرباء والغاز</option>
+                      <option value="education">التعليم والمدارس</option>
+                      <option value="health">الصحة والمستشفيات</option>
+                      <option value="housing">السكن والتعمير</option>
+                      <option value="social">الشؤون الاجتماعية</option>
+                      <option value="environment">البيئة والنظافة</option>
+                      <option value="agriculture">الفلاحة والري</option>
+                      <option value="security">الأمن والنظام العام</option>
+                      <option value="admin">الخدمات الإدارية</option>
+                      <option value="transport">النقل والمواصلات</option>
+                    </optgroup>
+                    <optgroup label="أخرى">
+                      <option value="suggestion">مقترح وتحسين</option>
+                      <option value="other">أخرى</option>
+                    </optgroup>
+                  </select>
+                  <svg class="select-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                       viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </div>
+                <span class="field-error" id="err-an-category"></span>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">
+                  مستوى الأولوية <span class="req-star">*</span>
+                </label>
+                <div class="priority-selector">
+                  <label class="priority-opt normal-opt">
+                    <input type="radio" name="an_priority" value="normal" checked />
+                    <span class="priority-pill">عادي</span>
+                  </label>
+                  <label class="priority-opt urgent-opt">
+                    <input type="radio" name="an_priority" value="urgent" />
+                    <span class="priority-pill">مستعجل</span>
+                  </label>
+                  <label class="priority-opt very-urgent-opt">
+                    <input type="radio" name="an_priority" value="very_urgent" />
+                    <span class="priority-pill">جد مستعجل</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="field-group full-width">
+              <label class="field-label" for="an-subject">
+                عنوان الشكوى <span class="req-star">*</span>
+              </label>
+              <input class="field-input" type="text" id="an-subject" name="subject"
+                     placeholder="ملخص مختصر للمشكلة أو المقترح" required />
+              <span class="field-error" id="err-an-subject"></span>
+            </div>
+
+            <div class="field-group full-width">
+              <label class="field-label" for="an-description">
+                تفاصيل الشكوى <span class="req-star">*</span>
+              </label>
+              <textarea class="field-textarea" id="an-description" name="description"
+                        placeholder="اشرح المشكلة بالتفصيل: المكان، التاريخ، الجهة المعنية، والتأثير على المواطنين..."
+                        rows="6" required></textarea>
+              <div class="textarea-footer">
+                <span class="field-error" id="err-an-description"></span>
+                <span class="char-counter" id="counter-an-description">0 / 1000</span>
+              </div>
+            </div>
+
+            <div class="field-group full-width">
+              <label class="field-label">
+                المرفقات والوثائق
+                <span class="optional-tag">اختياري</span>
+              </label>
+              <div class="upload-zone" id="upload-zone-anonymous"
+                   ondragover="handleDragOver(event)" ondrop="handleDrop(event,'anonymous')"
+                   ondragleave="handleDragLeave(event)">
+                <div class="upload-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
+                       fill="none" stroke="currentColor" stroke-width="1.5">
+                    <polyline points="16 16 12 12 8 16"/>
+                    <line x1="12" y1="12" x2="12" y2="21"/>
+                    <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
+                  </svg>
+                </div>
+                <div class="upload-text">
+                  <strong>اسحب وأفلت الملفات هنا</strong>
+                  <span>أو انقر للاختيار</span>
+                </div>
+                <div class="upload-hints">
+                  <span>PDF، صور (JPG, PNG)، Word، Excel</span>
+                  <span>•</span>
+                  <span>الحجم الأقصى: 5MB لكل ملف</span>
+                  <span>•</span>
+                  <span>حتى 5 ملفات</span>
+                </div>
+              </div>
+              <input type="file" id="an-files" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx" class="hidden-input" onchange="handleFileSelect(event,'anonymous')" />
+              <div class="file-list" id="file-list-anonymous"></div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="reset" class="btn-reset" onclick="resetForm('anonymous')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/>
+              </svg>
+              إعادة تعيين
+            </button>
+            <button type="submit" class="btn-submit anon-submit" id="submit-anonymous">
+              <span class="btn-label">إرسال شكوى مجهولة</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              <span class="btn-loader" id="loader-anonymous"></span>
+            </button>
+          </div>
+        </form>
+
+      </div><!-- end form-card -->
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       TRACKING SECTION
+  ══════════════════════════════════════════ -->
+  <section class="track-section" id="track-section" style="padding: 80px 0; background: var(--gray-50);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">متابعة حالة الطلب</div>
+        <h2 class="section-title">تتبع شكواك</h2>
+        <p class="section-desc">أدخل كود التتبع الذي حصلت عليه عند تقديم الشكوى لمعرفة حالتها الحالية</p>
+      </div>
+      
+      <div style="max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: var(--radius-lg); box-shadow: var(--shadow);">
+        <form id="track-form" style="display: flex; gap: 10px;">
+          <input type="text" id="track-code" class="field-input" placeholder="مثال: AFLOU-2025-XXXXXX" required style="flex: 1;">
+          <button type="submit" class="btn-submit" style="white-space: nowrap;">بحث وتتبع</button>
+        </form>
+        
+        <div id="track-result" style="margin-top: 30px; display: none; padding-top: 20px; border-top: 1px solid var(--border);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <strong style="color: var(--text-secondary);">حالة الشكوى:</strong>
+            <span id="res-status" class="status-badge"></span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <strong style="color: var(--text-secondary);">الموضوع:</strong>
+            <span id="res-title" style="font-weight: 700;"></span>
+          </div>
+        </div>
+        <p id="track-error" style="color: var(--red); margin-top: 20px; font-weight: 700; text-align: center; display: none;"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       HOW IT WORKS
+  ══════════════════════════════════════════ -->
+  <section class="how-section" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">الآلية</div>
+        <h2 class="section-title">كيفية معالجة شكواك</h2>
+        <p class="section-desc">من تقديم الشكوى إلى الحل — ٤ خطوات واضحة</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">١</div>
+          <div class="step-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+          </div>
+          <h3>تقديم الشكوى</h3>
+          <p>أملأ النموذج باختيار الوضع المناسب لك (عادي أو مجهول) وأرفق وثائقك</p>
+        </div>
+        <div class="step-arrow">&#x2190;</div>
+        <div class="step-card">
+          <div class="step-number">٢</div>
+          <div class="step-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </div>
+          <h3>المراجعة والدراسة</h3>
+          <p>يستلم مكتب الوالي الشكوى ويوجهها للجهة المختصة خلال 24 ساعة</p>
+        </div>
+        <div class="step-arrow">&#x2190;</div>
+        <div class="step-card">
+          <div class="step-number">٣</div>
+          <div class="step-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3>المعالجة</h3>
+          <p>تعمل المصالح المختصة على دراسة الشكوى والتحقيق فيها خلال ٧٢ ساعة</p>
+        </div>
+        <div class="step-arrow">&#x2190;</div>
+        <div class="step-card">
+          <div class="step-number">٤</div>
+          <div class="step-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <h3>الرد والحل</h3>
+          <p>يُبلَّغ المواطن بنتيجة الشكوى عبر الهاتف أو البريد الإلكتروني (للشكاوى العادية)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       FAQ SECTION
+  ══════════════════════════════════════════ -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">الأسئلة الشائعة</div>
+        <h2 class="section-title">أسئلة يطرحها المواطنون</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>هل يمكنني رفع شكوى ضد موظف في إدارة عمومية؟</span>
+            <svg class="faq-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>نعم، بإمكانك تقديم شكوى ضد أي مسؤول أو موظف عمومي. نوصي في هذه الحالة بإرفاق أدلة ووثائق داعمة. يمكنك أيضاً استخدام وضع الهوية المجهولة لضمان حمايتك.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>ما هي أنواع الملفات التي يمكن إرفاقها مع الشكوى؟</span>
+            <svg class="faq-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>يمكنك إرفاق: ملفات PDF، صور (JPG, PNG)، مستندات Word وExcel. الحجم الأقصى هو 5 ميغابايت لكل ملف، وحتى 5 ملفات لكل شكوى. ننصح بإرفاق صور واضحة أو وثائق رسمية لتدعيم شكواك.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>هل الشكوى المجهولة مضمونة السرية حقاً؟</span>
+            <svg class="faq-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>نعم. في وضع الشكوى المجهولة، لا يتم تسجيل أي بيانات تعريفية كالاسم أو رقم الهاتف أو عنوان IP. لا تتوقع أي رد شخصي في هذه الحالة، لكن شكواك ستُعالج بالجدية ذاتها.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>كم يستغرق معالجة الشكوى؟</span>
+            <svg class="faq-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>الشكاوى العادية: يتم الرد الأولي خلال 72 ساعة. الحل الكامل يعتمد على طبيعة المشكلة وقد يستغرق من أسبوع إلى شهر. الشكاوى ذات الأولوية "جد مستعجل" تُعالج في أول 24 ساعة.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       CONTACT SECTION
+  ══════════════════════════════════════════ -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">اتصل بنا</div>
+        <h2 class="section-title">تواصل مع مكتب الوالي</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <h3>العنوان</h3>
+          <p>مقر ولاية الأفلو<br/>الأفلو، ولاية الأغواط<br/>الجزائر</p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17l.19-.08z"/>
+            </svg>
+          </div>
+          <h3>الهاتف</h3>
+          <p>مكتب الوالي:<br/>(029) XX XX XX</p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <h3>أوقات العمل</h3>
+          <p>الأحد – الخميس<br/>08:00 – 16:00<br/>المنصة متاحة 24/7</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════ -->
+  <footer class="main-footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <div class="footer-logo-title">منصة الشكاوى والمقترحات</div>
+            <p class="footer-about">
+              بوابة رسمية تابعة لولاية الأفلو لتلقي ومعالجة شكاوى ومقترحات المواطنين بكل شفافية.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-col-title">روابط سريعة</h4>
+            <ul class="footer-links">
+              <li><a href="#">الرئيسية</a></li>
+              <li><a href="#complaint-section">تقديم شكوى</a></li>
+              <li><a href="#how-it-works">كيفية الاستخدام</a></li>
+              <li><a href="#faq">الأسئلة الشائعة</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-col-title">روابط رسمية</h4>
+            <ul class="footer-links">
+              <li><a href="https://www.interieur.gov.dz" target="_blank">وزارة الداخلية</a></li>
+              <li><a href="https://www.el-mouradia.dz" target="_blank">رئاسة الجمهورية</a></li>
+              <li><a href="#">بوابة الحكومة الإلكترونية</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="footer-bottom-inner">
+          <p>© 2025 ولاية الأفلو – جميع الحقوق محفوظة</p>
+          <p>الجمهورية الجزائرية الديمقراطية الشعبية</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════
+       SUCCESS MODAL
+  ══════════════════════════════════════════ -->
+  <div class="modal-overlay success-modal" id="success-modal">
+    <div class="modal-box">
+      <div class="modal-success-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+      </div>
+      <h2 class="modal-title">تم إرسال شكواك بنجاح!</h2>
+      <p class="modal-desc" id="modal-desc">
+        شكرًا لتواصلك. تم استلام شكواك وسيتم تحويلها للجهة المختصة.
+      </p>
+      <div class="modal-ref" id="modal-ref"></div>
+      <div class="modal-info" id="modal-info-normal">
+        <div class="modal-info-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          سيتم الرد عليك خلال 72 ساعة عمل
+        </div>
+      </div>
+      <button class="modal-close-btn" onclick="closeSuccessModal()">حسناً</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
